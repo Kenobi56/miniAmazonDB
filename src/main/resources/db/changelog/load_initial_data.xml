@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet  author="steven"  id="loadArticle">
+        <loadUpdateData  catalogName="albums"
+                         encoding="UTF-8"
+                         file="../data/ArticleData.csv"
+                         primaryKey="Id"
+                         relativeToChangelogFile="true"
+                         separator=";"
+                         tableName="Article">
+            <column  name="Id"
+                     type="integer"/>
+            <column
+                     name="Name"
+                     type="varchar(150)"/>
+            <column
+                     name="Price"
+                     type="numeric"/>
+            <column
+                     name="LastTimeBought"
+                     type="datetime2"/>
+            <column
+                     name="SoldCount"
+                     type="integer"/>
+            <column
+                    name="Stock"
+                    type="integer"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet  author="steven"  id="loadUsers">
+        <loadUpdateData  catalogName="users"
+                         encoding="UTF-8"
+                         file="../data/UserData.csv"
+                         primaryKey="Id"
+                         relativeToChangelogFile="true"
+                         schemaName="public"
+                         separator=";"
+                         tableName="UserAmazon"
+                         usePreparedStatements="true">
+            <column  header="Id"
+                     name="Id"
+                     type="integer"/>
+            <column  header="FirstName"
+                     name="FirstName"
+                     type="varchar(50)"/>
+            <column  header="LastName"
+                     name="LastName"
+                     type="varchar(50)"/>
+            <column  header="Email"
+                     name="Email"
+                     type="varchar(150)"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet  author="steven"  id="loadWishlist">
+        <loadUpdateData  catalogName="whislists"
+                         encoding="UTF-8"
+                         file="../data/WishlistData.csv"
+                         primaryKey="UserId,ArticleId"
+                         quotchar="'"
+                         relativeToChangelogFile="true"
+                         schemaName="public"
+                         separator=";"
+                         tableName="Wishlist"
+                         usePreparedStatements="true">
+            <column  header="UserId"
+                     name="UserId"
+                     type="integer"/>
+            <column  header="ArticleId"
+                     name="ArticleId"
+                     type="integer"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet  author="steven"  id="loadBoughtHistory">
+        <loadUpdateData  catalogName="boughtHistory"
+                         encoding="UTF-8"
+                         file="../data/BoughtHistoryData.csv"
+                         primaryKey="UserId,ArticleId"
+                         quotchar="'"
+                         relativeToChangelogFile="true"
+                         schemaName="public"
+                         separator=";"
+                         tableName="BoughtHistory"
+                         usePreparedStatements="true">
+            <column  header="UserId"
+                     name="UserId"
+                     type="integer"/>
+            <column  header="ArticleId"
+                     name="ArticleId"
+                     type="integer"/>
+            <column  header="BoughtCount"
+                     name="BoughtCount"
+                     type="integer"/>
+        </loadUpdateData>
+    </changeSet>
+
+</databaseChangeLog>

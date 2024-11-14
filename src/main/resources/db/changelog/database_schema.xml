@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1" author="steven">
+        <createTable  tableName="UserAmazon">
+            <column name="Id" type="integer">
+                <constraints primaryKey="true" nullable = "false"/>
+            </column>
+            <column name="FirstName" type="varchar(50)">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="LastName" type="varchar(50)">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="Email" type="varchar(150)">
+                    <constraints unique="true" nullable = "false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="steven">
+        <createTable  tableName="Article">
+            <column name="Id" type="integer">
+                <constraints primaryKey="true" nullable = "false"/>
+            </column>
+            <column name="Name" type="varchar (150)">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="Price" type="numeric">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="Stock" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="SoldCount" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="LastTimeBought" type="datetime2"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="steven">
+        <createTable  tableName="Wishlist">
+            <column name="UserId" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="ArticleId" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="Wishlist" columnNames="UserId,ArticleId" constraintName="PrimaryWishlist"/>
+    </changeSet>
+
+    <changeSet id="4" author="steven">
+        <createTable  tableName="BoughtHistory">
+            <column name="UserId" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="ArticleId" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+            <column name="BoughtCount" type="integer">
+                <constraints nullable = "false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="BoughtHistory" columnNames="UserId,ArticleId" constraintName="PrimaryBought"/>
+    </changeSet>
+
+</databaseChangeLog>
